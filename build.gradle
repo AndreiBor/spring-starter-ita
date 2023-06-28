@@ -31,6 +31,7 @@ dependencies {
     implementation 'com.querydsl:querydsl-jpa:5.0.0:jakarta'
     implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.4'
     annotationProcessor 'com.querydsl:querydsl-apt'
+
 }
 
 querydsl {
