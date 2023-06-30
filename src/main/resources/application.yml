@@ -28,6 +28,8 @@ logging:
     name: by.itacademy
     path: /
 spring:
+  messages:
+    basename: messages
   mvc:
     view:
       prefix: /WEB-INF/jsp/

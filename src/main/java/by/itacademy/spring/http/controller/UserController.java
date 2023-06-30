@@ -51,7 +51,7 @@ public class UserController {
         return "user/registration";
     }
 
-    @PreAuthorize("hasAnyAuthority('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
     @GetMapping("/{id}")
     public String findById(@PathVariable("id") Long id, Model model,
                            @CurrentSecurityContext SecurityContext securityContext,
