@@ -1,4 +1,4 @@
-package by.itacademy.spring.aop;
+package by.itacademy.logging.aop;
 
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -10,10 +10,8 @@ import org.springframework.stereotype.Component;
 
 @Slf4j
 @Aspect
-@Component
-@Order(2)
 public class SecondAspect {
-    @Pointcut("execution(public * by.itacademy.spring.service.*Service.findById(*))")
+    @Pointcut("execution(public * by.itacademy.*.service.*Service.findById(*))")
     public void anyServiceFindByIdMethod() {
     }
 

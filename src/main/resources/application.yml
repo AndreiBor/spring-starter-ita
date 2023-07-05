@@ -49,3 +49,5 @@ app:
   image:
     backet: E:\AAA\JavaGuru\JavaEnterprise\Projects\spring-starter-ita\images
 
+app.service.logging:
+  enabled: true

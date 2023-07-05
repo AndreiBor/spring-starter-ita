@@ -11,6 +11,9 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @NoArgsConstructor
 @ConfigurationProperties(prefix = "app.service.logging")
 public class LoggingProperties {
+    /**
+     * enable service layer aop logging
+     */
     private boolean enabled;
 
     @PostConstruct
