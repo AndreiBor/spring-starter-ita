@@ -3,10 +3,10 @@ package by.itacademy.spring.aop;
 import by.itacademy.spring.validator.UserInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.*;
 
-import org.aspectj.lang.annotation.Before;
-import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Slf4j
 @Aspect
 @Component
+@Order(1)
 public class FirstAspect {
 
     @Pointcut("@within(org.springframework.stereotype.Controller)")
@@ -25,28 +26,34 @@ public class FirstAspect {
     public void isServiceLayer() {
     }
 
-//    @Pointcut("this(org.springframework.stereotype.Repository)")
+    //    @Pointcut("this(org.springframework.stereotype.Repository)")
     @Pointcut("target(org.springframework.stereotype.Repository)")
-    public void isRepositoryLayer(){
+    public void isRepositoryLayer() {
     }
 
     @Pointcut("isControllerLayer() && @annotation(org.springframework.web.bind.annotation.GetMapping)")
-    public void hasGetMapping(){}
+    public void hasGetMapping() {
+    }
 
     @Pointcut("isControllerLayer() && args(org.springframework.ui.Model,..)")
-    public void hasModelArg(){}
+    public void hasModelArg() {
+    }
 
     @Pointcut("isControllerLayer() && @args(by.itacademy.spring.validator.UserInfo,..)")
-    public void hasUserInfoAnnotation(){}
+    public void hasUserInfoAnnotation() {
+    }
 
     @Pointcut("bean(*Service)")
-    public void isServiceBean(){}
+    public void isServiceBean() {
+    }
 
     @Pointcut("execution(public * by.itacademy.spring.service.*Service.findById(*))")
-    public void anyServiceFindByIdMethod(){}
+    public void anyServiceFindByIdMethod() {
+    }
 
     @Pointcut("execution(public * findById(*))")
-    public void anyFindBuIdMethod(){}
+    public void anyFindBuIdMethod() {
+    }
 
     @Before("anyServiceFindByIdMethod() " +
             "&& args(id) " +
@@ -59,6 +66,26 @@ public class FirstAspect {
                            Object serviceProxy,
                            Transactional transactional) {
         log.info("Before invoke findById method in class {}, with id {}", service, id);
+    }
+
+    @AfterReturning(value = "anyServiceFindByIdMethod() " +
+            "&& target(service) ",
+            returning = "result")
+    public void addLoggingAfterReturning(Object result, Object service) {
+        log.info("AfterReturning invoke findById method in class {}, with result {}", service, result);
+    }
+
+    @AfterThrowing(value = "anyServiceFindByIdMethod() " +
+            "&& target(service) ",
+            throwing = "ex")
+    public void addLoggingAfterThrowing(Throwable ex, Object service) {
+        log.info("AfterThrowing invoke findById method in class {}, with throwing {}", service, ex);
+    }
+
+    @After("anyServiceFindByIdMethod() " +
+            "&& target(service) ")
+    public void addLoggingAfterThrowing(Object service) {
+        log.info("After invoke findById method in class {}", service);
     }
 
 

@@ -5,7 +5,6 @@ import by.itacademy.spring.database.entity.User;
 import by.itacademy.spring.database.repository.CompanyRepository;
 import by.itacademy.spring.dto.UserCreateEditDto;
 import lombok.RequiredArgsConstructor;
-import org.mockito.internal.util.StringUtil;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;

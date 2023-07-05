@@ -11,7 +11,6 @@ import by.itacademy.spring.mapper.UserCreateEditMapper;
 import by.itacademy.spring.mapper.UserReadMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
-import org.mockito.internal.util.StringUtil;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UserDetails;
