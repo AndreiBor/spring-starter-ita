@@ -17,6 +17,7 @@ public class FirstAspect {
     public void anyServiceFindByIdMethod() {
     }
 
+
     @Pointcut("execution(public * findById(*))")
     public void anyFindBuIdMethod() {
     }

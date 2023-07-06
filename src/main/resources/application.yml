@@ -45,9 +45,17 @@ spring:
       show_sql: true
       format_sql: true
       hbm2ddl.auto: validate
+
+
+  liquibase:
+    enabled: true
+
+
 app:
   image:
     backet: E:\AAA\JavaGuru\JavaEnterprise\Projects\spring-starter-ita\images
 
 app.service.logging:
   enabled: true
+
+

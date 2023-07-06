@@ -55,7 +55,8 @@ public class UserController {
     @GetMapping("/{id}")
     public String findById(@PathVariable("id") Long id, Model model,
                            @CurrentSecurityContext SecurityContext securityContext,
-                           @AuthenticationPrincipal UserDetails userDetails) {
+                           @AuthenticationPrincipal UserDetails userDetails
+    ) {
         return userService.findById(id)
                 .map(user -> {
                     model.addAttribute("user", user);
@@ -65,6 +66,7 @@ public class UserController {
                 })
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
+
 
     @PostMapping
     public String create(@ModelAttribute @Validated UserCreateEditDto user,
@@ -91,7 +93,7 @@ public class UserController {
     //    @DeleteMapping("/{id}")
     @PostMapping("/{id}/delete")
     public String delete(@PathVariable("id") Long id) {
-        if(!userService.delete(id)) {
+        if (!userService.delete(id)) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
         return "redirect:/users";

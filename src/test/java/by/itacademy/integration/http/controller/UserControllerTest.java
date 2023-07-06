@@ -1,6 +1,7 @@
 package by.itacademy.integration.http.controller;
 
 import by.itacademy.annotation.IT;
+import by.itacademy.integration.IntegrationTestBase;
 import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -18,11 +19,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 
-@IT
+
 @AutoConfigureMockMvc
 @RequiredArgsConstructor
 @WithMockUser(username = "test@gmail.com", password = "test", authorities = {"ADMIN", "USER"})
-public class UserControllerTest {
+public class UserControllerTest extends IntegrationTestBase {
     private final MockMvc mockMvc;
 
     @Test
