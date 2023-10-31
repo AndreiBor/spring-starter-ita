@@ -37,6 +37,8 @@ querydsl {
     querydslSourcesDir = "$buildDir/generated/sources/annotationProcessor/java/main"
 }
 
+initQuerydslSourcesDir.dependsOn clean
+
 compileQuerydsl {
     options.annotationProcessorPath = configurations.querydsl
 }
